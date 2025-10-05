@@ -1,0 +1,100 @@
+[
+    {
+        "email": "course-admin@test.edulinq.org",
+        "name": "course-admin",
+        "password": "course-admin",
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "admin"
+            },
+            "course101": {
+                "role": "admin"
+            }
+        }
+    },
+    {
+        "email": "course-grader@test.edulinq.org",
+        "name": "course-grader",
+        "password": "course-grader",
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "grader"
+            },
+            "course101": {
+                "role": "grader"
+            }
+        }
+    },
+    {
+        "email": "course-other@test.edulinq.org",
+        "name": "course-other",
+        "password": "course-other",
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "other"
+            },
+            "course101": {
+                "role": "other"
+            }
+        }
+    },
+    {
+        "email": "course-owner@test.edulinq.org",
+        "name": "course-owner",
+        "password": "course-owner",
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "owner"
+            },
+            "course101": {
+                "role": "owner"
+            }
+        }
+    },
+    {
+        "email": "course-student@test.edulinq.org",
+        "name": "course-student",
+        "password": "course-student",
+        "server-role": "user",
+        "course-info": {
+            "course-languages": {
+                "role": "student"
+            },
+            "course101": {
+                "role": "student"
+            }
+        }
+    },
+    {
+        "email": "server-admin@test.edulinq.org",
+        "name": "server-admin",
+        "password": "server-admin",
+        "server-role": "admin",
+        "course-info": {}
+    },
+    {
+        "email": "server-creator@test.edulinq.org",
+        "name": "server-creator",
+        "password": "server-creator",
+        "server-role": "creator",
+        "course-info": {}
+    },
+    {
+        "email": "server-owner@test.edulinq.org",
+        "name": "server-owner",
+        "password": "server-owner",
+        "server-role": "owner",
+        "course-info": {}
+    },
+    {
+        "email": "server-user@test.edulinq.org",
+        "name": "server-user",
+        "password": "server-user",
+        "server-role": "user",
+        "course-info": {}
+    }
+]

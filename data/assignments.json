@@ -1,0 +1,30 @@
+{
+    "course101": [
+        {
+            "id": "hw0",
+            "name": "Homework 0",
+            "max-points": 2,
+            "type": "autograder"
+        }
+    ],
+    "course-languages": [
+        {
+            "id": "bash",
+            "name": "A Simple Bash Assignment",
+            "max-points": 10,
+            "type": "autograder"
+        },
+        {
+            "id": "cpp",
+            "name": "A Simple C++ Assignment",
+            "max-points": 10,
+            "type": "autograder"
+        },
+        {
+            "id": "java",
+            "name": "A Simple Java Assignment",
+            "max-points": 10,
+            "type": "autograder"
+        }
+    ]
+}
