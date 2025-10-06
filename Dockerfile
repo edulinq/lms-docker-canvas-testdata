@@ -21,8 +21,8 @@ RUN pip3 install -r /work/requirements.txt
 WORKDIR /work/canvas-source
 
 # Copy Scripts and Data
-COPY ./data /work/data
-COPY ./scripts /work/scripts
+COPY ./testdata/raw /work/data
+COPY ./scripts/load-data.py /work/scripts/
 
 # Populate with test data.
 RUN \

@@ -12,6 +12,7 @@ test/
 out/
 
 /test*
+!/testdata/
 
 *.gz
 test.json
