@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+"""
+Generate test data using the LMS Toolkit.
+"""
+
+import argparse
+import sys
+
+import edq.util.dirent
+import lms.procedure.generate_test_data
+
+DEFAULT_CONTAINER_NAME: str = 'canvas-generate-test-data'
+DEFAULT_IMAGE_NAME: str = 'ghcr.io/edulinq/lms-docker-canvas-testdata'
+DEFAULT_PORT: int = 3000
+
+def run_cli(args):
+    args = {
+        'server': f"127.0.0.1:{args.port}",
+        'backend_type': 'canvas',
+        'server_start_command': f"docker run --rm -p {args.port}:3000 --name '{args.container_name}' '{args.image_name}'",
+        'server_stop_command': f"docker kill '{args.container_name}'",
+        'http_exchanges_out_dir': args.out_dir,
+    }
+
+    lms.procedure.generate_test_data.run(args)
+
+    return 0
+
+def main():
+    return run_cli(_get_parser().parse_args())
+
+def _get_parser():
+    parser = argparse.ArgumentParser(description = __doc__.strip())
+
+    parser.add_argument('--container-name', dest = 'container_name',
+        action = 'store', type = str, default = DEFAULT_CONTAINER_NAME,
+        help = 'The name for the container(s) that will be created and run (default: %(default)s).')
+
+    parser.add_argument('--image-name', dest = 'image_name',
+        action = 'store', type = str, default = DEFAULT_IMAGE_NAME,
+        help = 'The name of the image to run (default: %(default)s).')
+
+    parser.add_argument('--port', dest = 'port',
+        action = 'store', type = int, default = DEFAULT_PORT,
+        help = 'The name of the image to run (default: %(default)s).')
+
+    parser.add_argument('--out-dir', dest = 'out_dir',
+        action = 'store', type = str, default = None,
+        help = 'Where the output HTTP exchanges will be written (default: %(default)s).')
+
+    return parser
+
+if (__name__ == '__main__'):
+    sys.exit(main())
