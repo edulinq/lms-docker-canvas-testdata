@@ -7,7 +7,7 @@ and includes test data (users, courses, assignments, etc).
 
 ## Usage
 
-The docker image is fairly standard, and does not require special care when building or running.
+The docker image is fairly standard, and does not require any special care when building or running.
 
 Running the scripts in this project requires Python >= 3.8 and the dependencies listed in [requirements.txt](requirements.txt).
 You can install these requirements in pip with:
