@@ -1,18 +1,8 @@
-FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.1
+FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.3
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /work
-
-# Install additional system packages.
-RUN \
-    apt-get update \
-    && apt-get install -y \
-        # Python \
-        python3 \
-        python3-pip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 # Install Python Dependencies
 COPY ./requirements.txt /work/

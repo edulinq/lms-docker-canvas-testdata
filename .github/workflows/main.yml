@@ -86,11 +86,22 @@ jobs:
           push: false
           outputs: |
             type=image,push-by-digest=true,name-canonical=true,push=true
-            type=docker,name=built-test-image
+            type=docker
 
       - name: Verify Test Data
         shell: bash
-        run: scripts/verify-test-data.py --image-name built-test-image
+        run: |
+            # TEST
+            # scripts/verify-test-data.py --image-name ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.imageid }}
+            docker images -a
+            echo '---'
+            (docker image inspect ${{ env.FULL_IMAGE_NAME }} || true)
+            echo '---'
+            (docker image inspect ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.digest }} || true)
+            echo '---'
+            (docker image inspect ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.imageid }} || true)
+            echo '---'
+            scripts/verify-test-data.py --image-name ${{ steps.build.outputs.imageid }} || (cat /tmp/edq-lms-server-output* && false)
 
       - name: Export Digest
         shell: bash
