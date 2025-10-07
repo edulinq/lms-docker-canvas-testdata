@@ -13,7 +13,7 @@
     "response_code": 200,
     "response_headers": {},
     "json_body": false,
-    "response_body": "[{\"created_at\": \"2025-10-07T13:20:37-06:00\", \"email\": \"course-admin@test.edulinq.org\", \"enrollments\": [{\"associated_user_id\": null, \"course_id\": 1, \"course_section_id\": 2, \"created_at\": \"2025-10-07T19:20:47Z\", \"end_at\": null, \"enrollment_state\": \"active\", \"html_url\": \"http://127.0.0.1:3000/courses/1/users/2\", \"id\": 2, \"last_attended_at\": null, \"limit_privileges_to_course_section\": false, \"role\": \"TaEnrollment\", \"role_id\": 5, \"root_account_id\": 1, \"start_at\": null, \"type\": \"TaEnrollment\", \"user_id\": 2}], \"id\": 2, \"login_id\": \"course-admin@test.edulinq.org\", \"name\": \"course-admin\", \"short_name\": \"course-admin\", \"sortable_name\": \"course-admin\"}]",
+    "response_body": "[{\"email\": \"course-admin@test.edulinq.org\", \"enrollments\": [{\"associated_user_id\": null, \"course_id\": 1, \"course_section_id\": 2, \"end_at\": null, \"enrollment_state\": \"active\", \"html_url\": \"http://127.0.0.1:3000/courses/1/users/2\", \"id\": 2, \"last_attended_at\": null, \"limit_privileges_to_course_section\": false, \"role\": \"TaEnrollment\", \"role_id\": 5, \"root_account_id\": 1, \"start_at\": null, \"type\": \"TaEnrollment\", \"user_id\": 2}], \"id\": 2, \"login_id\": \"course-admin@test.edulinq.org\", \"name\": \"course-admin\", \"short_name\": \"course-admin\", \"sortable_name\": \"course-admin\"}]",
     "read_write": false,
     "response_modifier": "lms.util.net.clean_canvas_response",
     "source_path": null,
