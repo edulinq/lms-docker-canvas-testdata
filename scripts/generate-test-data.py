@@ -28,9 +28,7 @@ def run_cli(args):
         'http_exchanges_out_dir': args.out_dir,
     }
 
-    lms.procedure.generate_test_data.run(args)
-
-    return 0
+    return lms.procedure.generate_test_data.run(args)
 
 def main():
     return run_cli(_get_parser().parse_args())

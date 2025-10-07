@@ -28,9 +28,7 @@ def run_cli(args):
         'test_data_dir': args.test_data_dir,
     }
 
-    lms.procedure.verify_test_data.run(args)
-
-    return 0
+    return lms.procedure.verify_test_data.run(args)
 
 def main():
     return run_cli(_get_parser().parse_args())

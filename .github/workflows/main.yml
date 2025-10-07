@@ -44,11 +44,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-os:${{ matrix.runner }}-python:${{ matrix.python-version }}-${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-os:${{ matrix.runner }}-python:${{ matrix.python-version }}-${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements.txt') }}
 
       - name: Install Python Dependencies
         shell: bash
-        run: pip3 install -r requirements.txt
+        run: pip3 install -r requirements.txt -r requirements-dev.txt
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -90,18 +90,7 @@ jobs:
 
       - name: Verify Test Data
         shell: bash
-        run: |
-            # TEST
-            # scripts/verify-test-data.py --image-name ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.imageid }}
-            docker images -a
-            echo '---'
-            (docker image inspect ${{ env.FULL_IMAGE_NAME }} || true)
-            echo '---'
-            (docker image inspect ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.digest }} || true)
-            echo '---'
-            (docker image inspect ${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.imageid }} || true)
-            echo '---'
-            scripts/verify-test-data.py --image-name ${{ steps.build.outputs.imageid }} || (cat /tmp/edq-lms-server-output* && false)
+        run: scripts/verify-test-data.py --image-name ${{ steps.build.outputs.imageid }}
 
       - name: Export Digest
         shell: bash
