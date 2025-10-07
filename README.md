@@ -12,7 +12,7 @@ The docker image is fairly standard, and does not require special care when buil
 Running the scripts in this project requires Python >= 3.8 and the dependencies listed in [requirements.txt](requirements.txt).
 You can install these requirements in pip with:
 ```sh
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-dev.txt
 ```
 
 ### Building
