@@ -1,2 +1,2 @@
-edq-lms-toolkit>=1.0.1
+edq-lms-toolkit>=1.0.2
 requests>=2.31.0
