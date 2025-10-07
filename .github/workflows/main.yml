@@ -84,11 +84,13 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ env.FULL_IMAGE_NAME }}
           push: false
-          outputs: type=image,push-by-digest=true,name-canonical=true,push=true
+          outputs: |
+            type=image,push-by-digest=true,name-canonical=true,push=true
+            type=docker,name=built-test-image
 
       - name: Verify Test Data
         shell: bash
-        run: scripts/verify-test-data.py --image-name '${{ env.FULL_IMAGE_NAME }}'
+        run: scripts/verify-test-data.py --image-name built-test-image
 
       - name: Export Digest
         shell: bash
