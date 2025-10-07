@@ -5,13 +5,18 @@ Generate test data using the LMS Toolkit.
 """
 
 import argparse
+import os
 import sys
 
 import edq.util.dirent
 import lms.procedure.generate_test_data
 
+THIS_DIR: str = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+TEST_DATA_DIR: str = os.path.join(THIS_DIR, '..', 'testdata', 'http')
+
 DEFAULT_CONTAINER_NAME: str = 'canvas-generate-test-data'
 DEFAULT_IMAGE_NAME: str = 'ghcr.io/edulinq/lms-docker-canvas-testdata'
+DEFAULT_IMAGE_NAME: str = 'lms-docker-canvas-testdata'
 DEFAULT_PORT: int = 3000
 
 def run_cli(args):
@@ -46,7 +51,7 @@ def _get_parser():
         help = 'The name of the image to run (default: %(default)s).')
 
     parser.add_argument('--out-dir', dest = 'out_dir',
-        action = 'store', type = str, default = None,
+        action = 'store', type = str, default = TEST_DATA_DIR,
         help = 'Where the output HTTP exchanges will be written (default: %(default)s).')
 
     return parser
