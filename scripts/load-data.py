@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import datetime
 import http
 import json
 import os
@@ -101,6 +102,20 @@ COURSE_ROLE_ENROLLMENT_MAP = {
 ASSIGNMENT_SUBMISSION_TYPE_MAP = {
     'autograder': 'none',
 }
+
+# Convert a timestamp to a Canvas DateTime string.
+# Timestamps are msecs since Unix epoch.
+# Note that this may be different before Python 3.10,
+# but the image will always have >= 3.10.
+def timestamp_to_canvas(timestamp, timezone = datetime.timezone.utc):
+    pytime = datetime.datetime.fromtimestamp(timestamp / 1000, timezone)
+    return pytime.isoformat(timespec = 'milliseconds')
+
+def run_sql(sql, db = 'canvas_development', clean_space = True):
+    if (clean_space):
+        sql = re.sub(r'\s+', ' ', sql)
+
+    subprocess.run(f'psql -c "{sql}" {db}', shell = True, check = True)
 
 def get_default_headers(user):
     token = user.get('canvas', {}).get('api_token', None)
@@ -278,11 +293,28 @@ def add_submissions(users, courses, assignments, submissions):
 
         data = {
             'submission[posted_grade]': submission['score'],
+            'submission[submitted_at]': timestamp_to_canvas(submission['grading-start-time']),
             'comment[text_comment]': submission['id'],
             'include[visibility]': True,
         }
 
-        make_canvas_put(users['server-owner'], f"courses/{canvas_course_id}/assignments/{canvas_assignment_id}/submissions/{canvas_user_id}", data = data)
+        make_canvas_put(users['course-owner'], f"courses/{canvas_course_id}/assignments/{canvas_assignment_id}/submissions/{canvas_user_id}", data = data)
+
+        # Canvas does not allow many dates to be set, so we have to manually set them in the DB.
+        sql = f"""
+            UPDATE public.submissions
+            SET
+                submitted_at = TO_TIMESTAMP({submission['grading-start-time'] / 1000}),
+                graded_at = TO_TIMESTAMP({submission['grading-end-time'] / 1000}),
+                posted_at = TO_TIMESTAMP({submission['grading-end-time'] / 1000})
+            WHERE
+                user_id = {canvas_user_id}
+                AND assignment_id = {canvas_assignment_id}
+                AND updated_at = (SELECT MAX(updated_at) FROM public.submissions)
+            ;
+        """
+
+        run_sql(sql)
 
 # Log in using the web interface and create an API token.
 # An 'api_token' field will be added to the user's 'canvas' dict.
@@ -391,8 +423,7 @@ def replace_tokens(users):
             ;
         """
 
-        sql = re.sub(r'\s+', ' ', sql)
-        subprocess.run(f'psql -c "{sql}" canvas_development', shell = True)
+        run_sql(sql)
 
 # wait for the server to respond.
 def wait_for_server():
