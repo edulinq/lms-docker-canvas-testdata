@@ -1,0 +1,20 @@
+{
+    "method": "GET",
+    "url_path": "api/v1/courses/2/students/submissions",
+    "url_anchor": null,
+    "parameters": {
+        "student_ids[]": "6"
+    },
+    "files": [],
+    "headers": {
+        "authorization": "Bearer nHRkQ39czXL2x7xxKrPYmvtYTyWJCCHCVRMZTfTfZtJZZWXHnkN9UhnCy37XuYeK"
+    },
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "[{\"assignment_id\": 2, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": null, \"entered_score\": null, \"excused\": null, \"extra_attempts\": null, \"grade\": null, \"grade_matches_current_submission\": true, \"graded_at\": null, \"grader_id\": null, \"grading_period_id\": null, \"id\": 2, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": null, \"preview_url\": \"http://127.0.0.1:3000/courses/2/assignments/2/submissions/6?preview=1&version=0\", \"redo_request\": false, \"score\": null, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 6, \"workflow_state\": \"unsubmitted\"}, {\"assignment_id\": 3, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": null, \"entered_score\": null, \"excused\": null, \"extra_attempts\": null, \"grade\": null, \"grade_matches_current_submission\": true, \"graded_at\": null, \"grader_id\": null, \"grading_period_id\": null, \"id\": 3, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": null, \"preview_url\": \"http://127.0.0.1:3000/courses/2/assignments/3/submissions/6?preview=1&version=0\", \"redo_request\": false, \"score\": null, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 6, \"workflow_state\": \"unsubmitted\"}, {\"assignment_id\": 4, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": null, \"entered_score\": null, \"excused\": null, \"extra_attempts\": null, \"grade\": null, \"grade_matches_current_submission\": true, \"graded_at\": null, \"grader_id\": null, \"grading_period_id\": null, \"id\": 4, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": null, \"preview_url\": \"http://127.0.0.1:3000/courses/2/assignments/4/submissions/6?preview=1&version=0\", \"redo_request\": false, \"score\": null, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 6, \"workflow_state\": \"unsubmitted\"}]",
+    "read_write": false,
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}
