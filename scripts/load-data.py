@@ -22,6 +22,10 @@ SUBMISSIONS_FILE = os.path.join(DATA_DIR, 'submissions.json')
 SERVER = 'http://127.0.0.1:3000'
 API_BASE = 'api/v1'
 
+# On update, Canvas will not always wait for the operation to complete to return.
+# We need to sleep to ensure consistent IDs.
+API_WRITE_WAIT_SECS = 0.10
+
 SITE_ADMIN_ACCOUNT_ID = 2
 SERVER_OWNER_ACCOUNT_ID = 1
 SERVER_OWNER_USER_ID = 1
@@ -99,8 +103,9 @@ COURSE_ROLE_ENROLLMENT_MAP = {
 }
 
 # See: https://developerdocs.instructure.com/services/canvas/resources/assignments#assignment
+ASSIGNMENT_SUBMISSION_TYPE_NONE = 'none'
 ASSIGNMENT_SUBMISSION_TYPE_MAP = {
-    'autograder': 'none',
+    'autograder': ASSIGNMENT_SUBMISSION_TYPE_NONE,
 }
 
 # Convert a timestamp to a Canvas DateTime string.
@@ -131,10 +136,14 @@ def make_canvas_get(user, endpoint, **kwargs):
     return make_canvas_request(user, endpoint, requests_function = requests.get, **kwargs)
 
 def make_canvas_post(user, endpoint, **kwargs):
-    return make_canvas_request(user, endpoint, requests_function = requests.post, **kwargs)
+    response = make_canvas_request(user, endpoint, requests_function = requests.post, **kwargs)
+    time.sleep(API_WRITE_WAIT_SECS)
+    return response
 
 def make_canvas_put(user, endpoint, **kwargs):
-    return make_canvas_request(user, endpoint, requests_function = requests.put, **kwargs)
+    response = make_canvas_request(user, endpoint, requests_function = requests.put, **kwargs)
+    time.sleep(API_WRITE_WAIT_SECS)
+    return response
 
 def make_canvas_request(user, endpoint,
         data = None, headers = None, json_body = True,
@@ -214,7 +223,7 @@ def add_users(users):
 
 # Add courses (not erollments) to canvas and add a 'canvas' dict to courses that has 'course_id'.
 def add_courses(users, courses):
-    account_id = users['course-owner']['canvas']['account_id']
+    account_id = users['server-owner']['canvas']['account_id']
 
     for course in courses.values():
         data = {
@@ -261,7 +270,7 @@ def add_assignments(users, assignments, courses):
         for assignment in course_assignments.values():
             data = {
                 'assignment[name]': assignment['name'],
-                'assignment[submission_types][]': ASSIGNMENT_SUBMISSION_TYPE_MAP[assignment['type']],
+                'assignment[submission_types][]': ASSIGNMENT_SUBMISSION_TYPE_MAP.get(assignment.get('type', None), ASSIGNMENT_SUBMISSION_TYPE_NONE),
                 'assignment[turnitin_enabled]': False,
                 'assignment[vericite_enabled]': False,
                 'assignment[peer_reviews]': False,
@@ -290,30 +299,57 @@ def add_submissions(users, courses, assignments, submissions):
         canvas_course_id = courses[submission['course-id']]['canvas']['course_id']
         canvas_assignment_id = assignments[submission['course-id']][submission['assignment-id']]['canvas']['assignment_id']
         canvas_user_id = users[submission['user'].split('@')[0]]['canvas']['user_id']
+        canvas_submission_id = submission['short-id']
+
+        # Canvas does not make submission IDs consistently,
+        # we need to manually set them before FKs are created.
+        sql = f"""
+            DELETE FROM public.auditor_grade_change_records_2025_10;
+
+            UPDATE public.submissions
+            SET id = {canvas_submission_id}
+            WHERE
+                assignment_id = {canvas_assignment_id}
+                AND user_id = {canvas_user_id}
+            ;
+        """
+        run_sql(sql)
 
         data = {
             'submission[posted_grade]': submission['score'],
-            'submission[submitted_at]': timestamp_to_canvas(submission['grading-start-time']),
-            'comment[text_comment]': submission['id'],
             'include[visibility]': True,
         }
 
-        make_canvas_put(users['course-owner'], f"courses/{canvas_course_id}/assignments/{canvas_assignment_id}/submissions/{canvas_user_id}", data = data)
+        grading_start_time = submission.get('grading-start-time', None)
+        grading_end_time = submission.get('grading-end-time', None)
+
+        if (grading_start_time is not None):
+            data['submission[submitted_at]'] = timestamp_to_canvas(grading_start_time)
+
+        make_canvas_put(users['server-owner'], f"courses/{canvas_course_id}/assignments/{canvas_assignment_id}/submissions/{canvas_user_id}", data = data)
+
+        # Canvas does not allow all the values we need to be set, so manually set them in the DB.
+        set_values = {}
 
         # Canvas does not allow many dates to be set, so we have to manually set them in the DB.
+
+        if (grading_start_time is not None):
+            set_values['submitted_at'] = f"TO_TIMESTAMP({grading_start_time / 1000})"
+
+        if (grading_end_time is not None):
+            set_values['graded_at'] = f"TO_TIMESTAMP({grading_end_time / 1000})"
+            set_values['posted_at'] = f"TO_TIMESTAMP({grading_end_time / 1000})"
+
+        set_sql = ', '.join([f"{field} = {value}" for (field, value) in set_values.items()])
+
         sql = f"""
             UPDATE public.submissions
             SET
-                submitted_at = TO_TIMESTAMP({submission['grading-start-time'] / 1000}),
-                graded_at = TO_TIMESTAMP({submission['grading-end-time'] / 1000}),
-                posted_at = TO_TIMESTAMP({submission['grading-end-time'] / 1000})
+                {set_sql}
             WHERE
-                user_id = {canvas_user_id}
-                AND assignment_id = {canvas_assignment_id}
-                AND updated_at = (SELECT MAX(updated_at) FROM public.submissions)
+                id = {canvas_submission_id}
             ;
         """
-
         run_sql(sql)
 
 # Log in using the web interface and create an API token.
@@ -410,7 +446,7 @@ def replace_tokens(users):
     for (name, user) in users.items():
         token_info = STATIC_TOKENS.get(name, None)
         if (token_info is None):
-            raise ValueError(f"Unable to find static token for '{name}'.")
+            continue
 
         sql = f"""
             UPDATE public.access_tokens

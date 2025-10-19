@@ -6,5 +6,9 @@
     {
         "id": "course-languages",
         "name": "Course Using Different Languages"
+    },
+    {
+        "id": "extra-course",
+        "name": "Extra Course"
     }
 ]

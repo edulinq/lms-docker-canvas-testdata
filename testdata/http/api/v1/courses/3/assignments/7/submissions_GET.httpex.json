@@ -1,0 +1,18 @@
+{
+    "method": "GET",
+    "url_path": "api/v1/courses/3/assignments/7/submissions",
+    "url_anchor": null,
+    "parameters": {},
+    "files": [],
+    "headers": {
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "[{\"assignment_id\": 7, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"30\", \"entered_score\": 30.0, \"excused\": false, \"extra_attempts\": null, \"grade\": \"30\", \"grade_matches_current_submission\": true, \"graded_at\": \"2011-03-13T07:06:40Z\", \"grader_id\": 1, \"grading_period_id\": null, \"id\": 1031, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2011-03-13T07:06:40Z\", \"preview_url\": \"http://127.0.0.1:3000/courses/3/assignments/7/submissions/7?preview=1&version=1\", \"redo_request\": false, \"score\": 30.0, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 7, \"workflow_state\": \"graded\"}, {\"assignment_id\": 7, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"22.5\", \"entered_score\": 22.5, \"excused\": false, \"extra_attempts\": null, \"grade\": \"22.5\", \"grade_matches_current_submission\": true, \"graded_at\": \"2011-03-13T07:06:40Z\", \"grader_id\": 1, \"grading_period_id\": null, \"id\": 1032, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2011-03-13T07:06:40Z\", \"preview_url\": \"http://127.0.0.1:3000/courses/3/assignments/7/submissions/8?preview=1&version=1\", \"redo_request\": false, \"score\": 22.5, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 8, \"workflow_state\": \"graded\"}, {\"assignment_id\": 7, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"15\", \"entered_score\": 15.0, \"excused\": false, \"extra_attempts\": null, \"grade\": \"15\", \"grade_matches_current_submission\": true, \"graded_at\": \"2011-03-13T07:06:40Z\", \"grader_id\": 1, \"grading_period_id\": null, \"id\": 1033, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2011-03-13T07:06:40Z\", \"preview_url\": \"http://127.0.0.1:3000/courses/3/assignments/7/submissions/9?preview=1&version=1\", \"redo_request\": false, \"score\": 15.0, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 9, \"workflow_state\": \"graded\"}, {\"assignment_id\": 7, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": null, \"entered_score\": null, \"excused\": null, \"extra_attempts\": null, \"grade\": null, \"grade_matches_current_submission\": true, \"graded_at\": null, \"grader_id\": null, \"grading_period_id\": null, \"id\": 16, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": null, \"preview_url\": \"http://127.0.0.1:3000/courses/3/assignments/7/submissions/10?preview=1&version=0\", \"redo_request\": false, \"score\": null, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"url\": null, \"user_id\": 10, \"workflow_state\": \"unsubmitted\"}]",
+    "read_write": false,
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}

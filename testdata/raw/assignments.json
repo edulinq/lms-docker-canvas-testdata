@@ -26,5 +26,22 @@
             "max-points": 10,
             "type": "autograder"
         }
+    ],
+    "extra-course": [
+        {
+            "id": "assignment-1",
+            "name": "Assignment 1",
+            "max-points": 10
+        },
+        {
+            "id": "assignment-2",
+            "name": "Assignment 2",
+            "max-points": 20
+        },
+        {
+            "id": "assignment-3",
+            "name": "Assignment 3",
+            "max-points": 30
+        }
     ]
 }

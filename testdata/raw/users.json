@@ -52,6 +52,9 @@
             },
             "course101": {
                 "role": "owner"
+            },
+            "extra-course": {
+                "role": "owner"
             }
         }
     },
@@ -65,6 +68,50 @@
                 "role": "student"
             },
             "course101": {
+                "role": "student"
+            }
+        }
+    },
+    {
+        "email": "extra-course-student-1@test.edulinq.org",
+        "name": "extra-course-student-1",
+        "password": "extra-course-student-1",
+        "server-role": "user",
+        "course-info": {
+            "extra-course": {
+                "role": "student"
+            }
+        }
+    },
+    {
+        "email": "extra-course-student-2@test.edulinq.org",
+        "name": "extra-course-student-2",
+        "password": "extra-course-student-2",
+        "server-role": "user",
+        "course-info": {
+            "extra-course": {
+                "role": "student"
+            }
+        }
+    },
+    {
+        "email": "extra-course-student-3@test.edulinq.org",
+        "name": "extra-course-student-3",
+        "password": "extra-course-student-3",
+        "server-role": "user",
+        "course-info": {
+            "extra-course": {
+                "role": "student"
+            }
+        }
+    },
+    {
+        "email": "extra-course-student-4@test.edulinq.org",
+        "name": "extra-course-student-4",
+        "password": "extra-course-student-4",
+        "server-role": "user",
+        "course-info": {
+            "extra-course": {
                 "role": "student"
             }
         }
