@@ -2,7 +2,9 @@
     "method": "POST",
     "url_path": "api/v1/courses/1/assignments/1/submissions/update_grades",
     "url_anchor": null,
-    "parameters": {},
+    "parameters": {
+        "grade_data[6][posted_grade]": ""
+    },
     "files": [],
     "headers": {
         "edq-lms-backend": "canvas",
