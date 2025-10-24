@@ -1,4 +1,4 @@
-FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.3
+FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.4
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -28,5 +28,3 @@ RUN \
     && pgrep -f puma | xargs kill \
     # Stop DB \
     && service postgresql stop
-
-ENTRYPOINT ["/work/scripts/entrypoint.sh"]
