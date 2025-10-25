@@ -9,6 +9,25 @@ and includes test data (users, courses, assignments, etc).
 
 The docker image is fairly standard, and does not require any special care when building or running.
 
+### Quick Start
+
+You can run the pre-built image with:
+```sh
+docker run --rm -it -p 3000:3000 --name canvas ghcr.io/edulinq/lms-docker-canvas-testdata
+```
+
+After the server starts, you can access the Canvas instance on [localhost:3000](http://localhost:3000).
+
+Try opening [localhost:3000](http://localhost:3000) in a browser and logging in with:
+ - Email: `course-owner@test.edulinq.org`
+ - Password: `course-owner`
+
+You should see the dashboard for a user that owns (in the instructor for) several courses.
+
+You can log in as any of the users listed in the [User Authentication section](#user-authentication).
+
+### Running Scripts
+
 Running the scripts in this project requires Python >= 3.8 and the dependencies listed in [requirements.txt](requirements.txt).
 You can install these requirements in pip with:
 ```sh
@@ -85,7 +104,6 @@ In addition, all users modified to have static API tokens that are consistent be
 | server-creator  | server-creator@test.edulinq.org | R9Z9GhYLrUArnc2cTAeu3Q7fkBhw7CZtuKB8A9eTVhvHWFKWrDVD769GnNzraAGJ |
 | server-owner    | server-owner@test.edulinq.org   | ycY4AhQ8ZGwk7L38vGur9HtG2WXevMcRh62eXU8KAfGRuXaXhXZE2wCthWVzRZn2 |
 | server-user     | server-user@test.edulinq.org    | vYNF6mWfcz4mQYBG6XJXeJh8x4WNNeQHkEkVDWAQxc8JBC9GJFwCffP9fznK4QMK |
-
 
 ## Licensing
 
