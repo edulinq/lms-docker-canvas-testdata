@@ -1,0 +1,50 @@
+[
+    {
+        "id": "100",
+        "name": "Group Set 1",
+        "course": "extra-course",
+        "assignment": "assignment-1",
+        "groups": [
+            {
+                "id": "101",
+                "name": "Group 1-1",
+                "users": [
+                    "extra-course-student-1",
+                    "extra-course-student-2"
+                ]
+            },
+            {
+                "id": "102",
+                "name": "Group 1-2",
+                "users": [
+                    "extra-course-student-3",
+                    "extra-course-student-4"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "200",
+        "name": "Group Set 2",
+        "course": "extra-course",
+        "assignment": "assignment-2",
+        "groups": [
+            {
+                "id": "201",
+                "name": "Group 2-1",
+                "users": [
+                    "extra-course-student-1",
+                    "extra-course-student-3"
+                ]
+            },
+            {
+                "id": "202",
+                "name": "Group 2-2",
+                "users": [
+                    "extra-course-student-2",
+                    "extra-course-student-4"
+                ]
+            }
+        ]
+    }
+]

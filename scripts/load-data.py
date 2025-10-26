@@ -14,10 +14,12 @@ import requests
 
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 DATA_DIR = os.path.join(THIS_DIR, '..', 'data')
-USERS_FILE = os.path.join(DATA_DIR, 'users.json')
-COURSES_FILE = os.path.join(DATA_DIR, 'courses.json')
+
 ASSIGNMENTS_FILE = os.path.join(DATA_DIR, 'assignments.json')
+COURSES_FILE = os.path.join(DATA_DIR, 'courses.json')
+GROUPS_FILE = os.path.join(DATA_DIR, 'groups.json')
 SUBMISSIONS_FILE = os.path.join(DATA_DIR, 'submissions.json')
+USERS_FILE = os.path.join(DATA_DIR, 'users.json')
 
 SERVER = 'http://127.0.0.1:3000'
 API_BASE = 'api/v1'
@@ -221,7 +223,7 @@ def add_users(users):
             'user_id': user_id,
         }
 
-# Add courses (not erollments) to canvas and add a 'canvas' dict to courses that has 'course_id'.
+# Add courses (not erollments) to canvas and add a 'canvas' dict to courses that has 'id'.
 def add_courses(users, courses):
     account_id = users['server-owner']['canvas']['account_id']
 
@@ -244,9 +246,9 @@ def add_courses(users, courses):
         }
 
         _, response_data = make_canvas_post(users['server-owner'], f"accounts/{account_id}/courses", data = data)
-        course_id = response_data['id']
+        canvas_course_id = response_data['id']
 
-        course['canvas'] = {'course_id': course_id}
+        course['canvas'] = {'id': canvas_course_id}
 
 def add_enrollments(users, courses):
     for user in users.values():
@@ -261,10 +263,10 @@ def add_enrollments(users, courses):
                 'enrollment[notify]': False,
             }
 
-            canvas_course_id = courses[course_id]['canvas']['course_id']
+            canvas_course_id = courses[course_id]['canvas']['id']
             make_canvas_post(users['server-owner'], f"courses/{canvas_course_id}/enrollments", data = data)
 
-# Add assignments to courses and add a 'canvas' dict to assignments that has 'assignment_id'.
+# Add assignments to courses and add a 'canvas' dict to assignments that has 'id'.
 def add_assignments(users, assignments, courses):
     for (course_id, course_assignments) in assignments.items():
         for assignment in course_assignments.values():
@@ -288,16 +290,16 @@ def add_assignments(users, assignments, courses):
                 # 'assignment[hide_in_gradebook]': False,
             }
 
-            canvas_course_id = courses[course_id]['canvas']['course_id']
+            canvas_course_id = courses[course_id]['canvas']['id']
             _, response_data = make_canvas_post(users['server-owner'], f"courses/{canvas_course_id}/assignments", data = data)
             canvas_assignment_id = response_data['id']
 
-            assignment['canvas'] = {'assignment_id': canvas_assignment_id}
+            assignment['canvas'] = {'id': canvas_assignment_id}
 
 def add_submissions(users, courses, assignments, submissions):
     for submission in submissions:
-        canvas_course_id = courses[submission['course-id']]['canvas']['course_id']
-        canvas_assignment_id = assignments[submission['course-id']][submission['assignment-id']]['canvas']['assignment_id']
+        canvas_course_id = courses[submission['course']]['canvas']['id']
+        canvas_assignment_id = assignments[submission['course']][submission['assignment']]['canvas']['id']
         canvas_user_id = users[submission['user'].split('@')[0]]['canvas']['user_id']
         canvas_submission_id = submission['short-id']
 
@@ -309,7 +311,7 @@ def add_submissions(users, courses, assignments, submissions):
             UPDATE public.submissions
             SET id = {canvas_submission_id}
             WHERE
-                assignment_id = {canvas_assignment_id}
+                id = {canvas_assignment_id}
                 AND user_id = {canvas_user_id}
             ;
         """
@@ -344,13 +346,61 @@ def add_submissions(users, courses, assignments, submissions):
 
         sql = f"""
             UPDATE public.submissions
-            SET
-                {set_sql}
-            WHERE
-                id = {canvas_submission_id}
+            SET {set_sql}
+            WHERE id = {canvas_submission_id}
             ;
         """
         run_sql(sql)
+
+def add_groups(users, courses, assignments, group_sets):
+    for group_set in group_sets:
+        canvas_course_id = courses[group_set['course']]['canvas']['id']
+        canvas_assignment_id = assignments[group_set['course']][group_set['assignment']]['canvas']['id']
+
+        data = {
+            'name': group_set['name'],
+            'create_group_count': 0,
+        }
+
+        _, response_data = make_canvas_post(users['course-owner'], f"courses/{canvas_course_id}/group_categories", data = data)
+        temp_canvas_group_set_id = response_data['id']
+
+        sql = f"""
+            UPDATE public.group_categories
+            SET id = {group_set['id']}
+            WHERE id = {temp_canvas_group_set_id}
+            ;
+        """
+        run_sql(sql)
+
+        for group in group_set['groups']:
+            _add_group(users, group, group_set)
+
+# Add group sets and groups to courses and add a 'canvas' dict to both that have respective id fields.
+def _add_group(users, group, group_set):
+    data = {
+        'name': group['name'],
+    }
+
+    _, response_data = make_canvas_post(users['course-owner'], f"group_categories/{group_set['id']}/groups", data = data)
+    temp_canvas_group_id = response_data['id']
+
+    sql = f"""
+        UPDATE public.groups
+        SET id = {group['id']}
+        WHERE id = {temp_canvas_group_id}
+        ;
+    """
+    run_sql(sql)
+
+    for user_name in group['users']:
+        canvas_user_id = users[user_name]['canvas']['user_id']
+
+        data = {
+            'user_id': canvas_user_id,
+        }
+
+        make_canvas_post(users['course-owner'], f"groups/{group['id']}/memberships", data = data)
 
 # Log in using the web interface and create an API token.
 # An 'api_token' field will be added to the user's 'canvas' dict.
@@ -418,17 +468,20 @@ def _parse_csrf_token(response):
 # - assignments: dict keyed by course id then assignment id,
 # - submissions: list.
 def load_test_data():
-    with open(USERS_FILE, 'r') as file:
-        raw_users = json.load(file)
+    with open(ASSIGNMENTS_FILE, 'r') as file:
+        raw_assignments = json.load(file)
 
     with open(COURSES_FILE, 'r') as file:
         raw_courses = json.load(file)
 
-    with open(ASSIGNMENTS_FILE, 'r') as file:
-        raw_assignments = json.load(file)
+    with open(GROUPS_FILE, 'r') as file:
+        group_sets = json.load(file)
 
     with open(SUBMISSIONS_FILE, 'r') as file:
         submissions = json.load(file)
+
+    with open(USERS_FILE, 'r') as file:
+        raw_users = json.load(file)
 
     # Transform the data from a list into a dict.
 
@@ -439,7 +492,7 @@ def load_test_data():
     for (course_id, course_assignments) in raw_assignments.items():
         assignments[course_id] = {course_assignment['id']: course_assignment for course_assignment in course_assignments}
 
-    return users, courses, assignments, submissions
+    return users, courses, assignments, group_sets, submissions
 
 # Replace users' existing tokens with static ones.
 def replace_tokens(users):
@@ -478,7 +531,7 @@ def wait_for_server():
     raise ValueError(f"Server has not responded properly at startup after {START_WAIT_ATTEMPTS} tries.")
 
 def main():
-    users, courses, assignments, submissions = load_test_data()
+    users, courses, assignments, group_sets, submissions = load_test_data()
 
     wait_for_server()
     print("Server is ready for data loading.")
@@ -506,6 +559,7 @@ def main():
     add_enrollments(users, courses)
     add_assignments(users, assignments, courses)
     add_submissions(users, courses, assignments, submissions)
+    add_groups(users, courses, assignments, group_sets)
 
     # Replace the created tokens with static values.
     replace_tokens(users)
