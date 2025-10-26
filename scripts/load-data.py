@@ -311,7 +311,7 @@ def add_submissions(users, courses, assignments, submissions):
             UPDATE public.submissions
             SET id = {canvas_submission_id}
             WHERE
-                id = {canvas_assignment_id}
+                assignment_id = {canvas_assignment_id}
                 AND user_id = {canvas_user_id}
             ;
         """
