@@ -5,13 +5,11 @@
     "parameters": {},
     "files": [],
     "headers": {},
+    "allow_redirects": false,
     "response_code": 302,
-    "response_headers": {
-        "location": "http://127.0.0.1:3000/login"
-    },
+    "response_headers": {},
     "json_body": false,
     "response_body": "",
-    "read_write": false,
     "response_modifier": "lms.util.net.clean_canvas_response",
     "source_path": null,
     "extra_options": {}
