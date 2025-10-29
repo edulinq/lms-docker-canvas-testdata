@@ -1,4 +1,4 @@
-FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.4
+FROM ghcr.io/edulinq/lms-docker-canvas-base:0.0.5
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -27,7 +27,16 @@ RUN \
     && sleep 5 \
     # Load the data, cat the log on failure. \
     && echo "Loading data." \
-    && (python3 /work/scripts/load-data.py || (echo "---------------" && cat /work/canvas-source/log/development.log && false)) \
+    && (python3 /work/scripts/load-data.py \
+        || ( \
+            echo "--------------- CANVAS LOG ---------------" \
+            && cat /work/canvas-source/log/development.log \
+            && echo "--------------- DATABASE LOG ---------------" \
+            && cat /var/log/postgresql/postgresql-14-main.log \
+            && echo "------------------------------------------" \
+            && false \
+        ) \
+    ) \
     # Sleep for short time to let background jobs finish. \
     && echo "Waiting for background jobs." \
     && sleep 5 \

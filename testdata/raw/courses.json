@@ -1,14 +1,17 @@
 [
     {
-        "id": "course101",
+        "id": "110000000",
+        "short-name": "course101",
         "name": "Course 101"
     },
     {
-        "id": "course-languages",
+        "id": "120000000",
+        "short-name": "course-languages",
         "name": "Course Using Different Languages"
     },
     {
-        "id": "extra-course",
+        "id": "130000000",
+        "short-name": "extra-course",
         "name": "Extra Course"
     }
 ]

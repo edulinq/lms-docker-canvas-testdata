@@ -1,5 +1,7 @@
 [
     {
+        "id": "100010000",
+        "short-name": "course-admin",
         "email": "course-admin@test.edulinq.org",
         "name": "course-admin",
         "password": "course-admin",
@@ -14,6 +16,8 @@
         }
     },
     {
+        "id": "100020000",
+        "short-name": "course-grader",
         "email": "course-grader@test.edulinq.org",
         "name": "course-grader",
         "password": "course-grader",
@@ -28,6 +32,8 @@
         }
     },
     {
+        "id": "100030000",
+        "short-name": "course-other",
         "email": "course-other@test.edulinq.org",
         "name": "course-other",
         "password": "course-other",
@@ -42,6 +48,8 @@
         }
     },
     {
+        "id": "100040000",
+        "short-name": "course-owner",
         "email": "course-owner@test.edulinq.org",
         "name": "course-owner",
         "password": "course-owner",
@@ -59,6 +67,8 @@
         }
     },
     {
+        "id": "100050000",
+        "short-name": "course-student",
         "email": "course-student@test.edulinq.org",
         "name": "course-student",
         "password": "course-student",
@@ -73,6 +83,8 @@
         }
     },
     {
+        "id": "100060000",
+        "short-name": "extra-course-student-1",
         "email": "extra-course-student-1@test.edulinq.org",
         "name": "extra-course-student-1",
         "password": "extra-course-student-1",
@@ -84,6 +96,8 @@
         }
     },
     {
+        "id": "100070000",
+        "short-name": "extra-course-student-2",
         "email": "extra-course-student-2@test.edulinq.org",
         "name": "extra-course-student-2",
         "password": "extra-course-student-2",
@@ -95,6 +109,8 @@
         }
     },
     {
+        "id": "100080000",
+        "short-name": "extra-course-student-3",
         "email": "extra-course-student-3@test.edulinq.org",
         "name": "extra-course-student-3",
         "password": "extra-course-student-3",
@@ -106,6 +122,8 @@
         }
     },
     {
+        "id": "100090000",
+        "short-name": "extra-course-student-4",
         "email": "extra-course-student-4@test.edulinq.org",
         "name": "extra-course-student-4",
         "password": "extra-course-student-4",
@@ -117,6 +135,8 @@
         }
     },
     {
+        "id": "100100000",
+        "short-name": "server-admin",
         "email": "server-admin@test.edulinq.org",
         "name": "server-admin",
         "password": "server-admin",
@@ -124,6 +144,8 @@
         "course-info": {}
     },
     {
+        "id": "100110000",
+        "short-name": "server-creator",
         "email": "server-creator@test.edulinq.org",
         "name": "server-creator",
         "password": "server-creator",
@@ -131,6 +153,8 @@
         "course-info": {}
     },
     {
+        "id": "100120000",
+        "short-name": "server-owner",
         "email": "server-owner@test.edulinq.org",
         "name": "server-owner",
         "password": "server-owner",
@@ -138,6 +162,8 @@
         "course-info": {}
     },
     {
+        "id": "100130000",
+        "short-name": "server-user",
         "email": "server-user@test.edulinq.org",
         "name": "server-user",
         "password": "server-user",

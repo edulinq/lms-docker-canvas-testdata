@@ -1,0 +1,23 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/assignments/110000100/submissions/update_grades",
+    "url_anchor": null,
+    "parameters": {
+        "grade_data[100050000][posted_grade]": "1.0",
+        "grade_data[100050000][text_comment]": "foo"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"completion\": null, \"context_id\": 110000000, \"context_type\": \"Course\", \"message\": null, \"tag\": \"submissions_update\", \"user_id\": null, \"workflow_state\": \"queued\"}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}
