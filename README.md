@@ -26,6 +26,12 @@ You should see the dashboard for a user that owns (in the instructor for) severa
 
 You can log in as any of the users listed in the [User Authentication section](#user-authentication).
 
+You can also send API requests right away using those API tokens.
+For example, you can list the instructor's (`course-owner`) courses with:
+```sh
+curl -H 'Authorization: Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U' 'http://127.0.0.1:3000/api/v1/courses'
+```
+
 ### Running Scripts
 
 Running the scripts in this project requires Python >= 3.8 and the dependencies listed in [requirements.txt](requirements.txt).
