@@ -1,0 +1,23 @@
+{
+    "method": "GET",
+    "url_path": "api/v1/group_categories/131030300/export",
+    "url_anchor": null,
+    "parameters": {},
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "false",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {
+        "content-disposition": "attachment; filename=\"Group Set 3.csv\"; filename*=UTF-8''Group%20Set%203.csv",
+        "content-transfer-encoding": "binary"
+    },
+    "json_body": false,
+    "response_body": "name,canvas_user_id,user_id,login_id,sections,group_name\nextra-course-student-1,100060000,extra-course-student-1@test.edulinq.org,extra-course-student-1@test.edulinq.org,Extra Course,\nextra-course-student-2,100070000,extra-course-student-2@test.edulinq.org,extra-course-student-2@test.edulinq.org,Extra Course,\nextra-course-student-3,100080000,extra-course-student-3@test.edulinq.org,extra-course-student-3@test.edulinq.org,Extra Course,\nextra-course-student-4,100090000,extra-course-student-4@test.edulinq.org,extra-course-student-4@test.edulinq.org,Extra Course,\n",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}

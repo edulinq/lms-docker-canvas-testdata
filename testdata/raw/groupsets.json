@@ -52,5 +52,20 @@
                 ]
             }
         ]
+    },
+    {
+        "id": "131030300",
+        "short-name": "group-set-3",
+        "name": "Group Set 3",
+        "course": "extra-course",
+        "assignment": "assignment-3",
+        "groups": [
+            {
+                "id": "131030301",
+                "short-name": "group-3-1",
+                "name": "Group 3-1",
+                "users": []
+            }
+        ]
     }
 ]

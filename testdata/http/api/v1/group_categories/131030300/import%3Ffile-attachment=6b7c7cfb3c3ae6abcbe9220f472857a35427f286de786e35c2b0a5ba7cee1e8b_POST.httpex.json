@@ -1,0 +1,27 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/group_categories/131030300/import",
+    "url_anchor": null,
+    "parameters": {},
+    "files": [
+        {
+            "path": null,
+            "name": "attachment",
+            "content": "Y2FudmFzX3VzZXJfaWQsY2FudmFzX2dyb3VwX2lkCjEwMDA2MDAwMCwxMzEwMzAzMDEK",
+            "b64_encoded": true
+        }
+    ],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"completion\": 0.0, \"context_id\": 131030300, \"context_type\": \"GroupCategory\", \"id\": 1, \"message\": null, \"tag\": \"course_group_import\", \"user_id\": null, \"workflow_state\": \"queued\"}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}
