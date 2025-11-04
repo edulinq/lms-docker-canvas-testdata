@@ -1,0 +1,22 @@
+{
+    "method": "DELETE",
+    "url_path": "api/v1/groups/131010101/users",
+    "url_anchor": null,
+    "parameters": {
+        "user_ids[]": "100060000"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"deleted_user_ids\": [100060000], \"message\": \"Bulk delete completed\", \"unauthorized_user_ids\": []}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "source_path": null,
+    "extra_options": {}
+}
