@@ -304,6 +304,10 @@ def add_courses(users, courses):
             'skip_course_template': True,
         }
 
+        syllabus = course.get('syllabus', None)
+        if (syllabus is not None):
+            data['course[syllabus_body]'] = syllabus
+
         _, response_data = make_canvas_post(users['server-owner'], f"accounts/{account_id}/courses", data = data)
         canvas_course_id = response_data['id']
 

@@ -2,7 +2,8 @@
     {
         "id": "110000000",
         "short-name": "course101",
-        "name": "Course 101"
+        "name": "Course 101",
+        "syllabus": "A sample course syllabus."
     },
     {
         "id": "120000000",
