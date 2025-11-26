@@ -1,7 +1,7 @@
 {
     "server": "127.0.0.1:3000",
     "backend_type": "canvas",
-    "user": "course-owner@test.edulinq.org",
-    "token": "xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U",
+    "auth_user": "course-owner@test.edulinq.org",
+    "auth_token": "xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U",
     "course": "Course 101"
 }
