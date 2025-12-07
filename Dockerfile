@@ -11,7 +11,7 @@ RUN pip3 install -r /work/requirements.txt
 WORKDIR /work/canvas-source
 
 # Copy Scripts and Data
-COPY ./testdata/raw /work/data
+COPY ./lms-testdata /work/lms-testdata
 COPY ./scripts/load-data.py /work/scripts/
 
 # Populate with test data.

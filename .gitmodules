@@ -1,0 +1,3 @@
+[submodule "lms-testdata"]
+	path = lms-testdata
+	url = https://github.com/edulinq/lms-testdata.git

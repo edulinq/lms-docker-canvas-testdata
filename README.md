@@ -5,6 +5,20 @@ A [Docker](https://en.wikipedia.org/wiki/Docker_(software)) image running an ins
 This image is based off of [ghcr.io/edulinq/lms-docker-canvas-base](https://github.com/edulinq/lms-docker-canvas-base),
 and includes test data (users, courses, assignments, etc).
 
+## Cloning
+
+This repository includes submodules.
+To fetch these submodules on clone, add the `--recurse-submodules` flag.
+For example:
+```sh
+git clone --recurse-submodules git@github.com:edulinq/lms-docker-canvas-testdata.git
+```
+
+To fetch the submodules after cloning, you can use:
+```sh
+git submodule update --init --recursive
+```
+
 ## Usage
 
 The docker image is fairly standard, and does not require any special care when building or running.
@@ -88,7 +102,7 @@ you can use the [scripts/verify-test-data.py](scripts/verify-test-data.py) scrip
 ```
 
 This will verify that the test HTTP exchanges in the [testdata/http](testdata/http) directory
-get the same response from you Canvas image.
+get the same response from your Canvas image.
 
 This verification step is also done as part of CI.
 

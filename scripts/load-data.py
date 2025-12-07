@@ -2,7 +2,6 @@
 
 import datetime
 import http
-import json
 import os
 import urllib.parse
 import re
@@ -10,24 +9,12 @@ import subprocess
 import sys
 import time
 
+import edq.util.pyimport
 import requests
 
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-DATA_DIR = os.path.join(THIS_DIR, '..', 'data')
-
-ASSIGNMENTS_FILE = os.path.join(DATA_DIR, 'assignments.json')
-COURSES_FILE = os.path.join(DATA_DIR, 'courses.json')
-GROUPSETS_FILE = os.path.join(DATA_DIR, 'groupsets.json')
-SUBMISSIONS_FILE = os.path.join(DATA_DIR, 'submissions.json')
-USERS_FILE = os.path.join(DATA_DIR, 'users.json')
-
-DATA_FILES = [
-    USERS_FILE,
-    COURSES_FILE,
-    ASSIGNMENTS_FILE,
-    GROUPSETS_FILE,
-    SUBMISSIONS_FILE,
-]
+DATA_DIR = os.path.join(THIS_DIR, '..', 'lms-testdata', 'testdata')
+LOAD_SCRIPT = os.path.join(THIS_DIR, '..', 'lms-testdata', 'load.py')
 
 SERVER = 'http://127.0.0.1:3000'
 API_BASE = 'api/v1'
@@ -547,29 +534,6 @@ def _parse_csrf_token(response):
 
     raise ValueError("Unable to get login csrf token.")
 
-# Load the data from disk.
-# All collections will be converted to a dict, keyed by the item's short name (`short-name`).
-# The same short name is used to cross-reference items in this dataset.
-# Returns (matches order of DATA_FILES): users, courses, assignments, groups, submissions.
-def load_test_data():
-    results = []
-
-    for path in DATA_FILES:
-        with open(path, 'r') as file:
-            items = json.load(file)
-
-        mapped_items = {}
-        for item in items:
-            key = item['short-name']
-            if (key in mapped_items):
-                raise ValueError(f"Found duplicate key ('{key}') in data file: '{path}'.")
-
-            mapped_items[key] = item
-
-        results.append(mapped_items)
-
-    return tuple(results)
-
 # Replace users' existing tokens with static ones.
 def replace_tokens(users):
     for (name, user) in users.items():
@@ -607,7 +571,9 @@ def wait_for_server():
     raise ValueError(f"Server has not responded properly at startup after {START_WAIT_ATTEMPTS} tries.")
 
 def main():
-    users, courses, assignments, groupsets, submissions = load_test_data()
+    # The Python pathing makes it easier to load this dynamically.
+    dataset = edq.util.pyimport.import_path(LOAD_SCRIPT).load_test_data(DATA_DIR)
+    (users, courses, assignments, groupsets, submissions) = dataset
 
     wait_for_server()
     print("Server is ready for data loading.")
