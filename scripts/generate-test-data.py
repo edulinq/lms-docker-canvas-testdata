@@ -8,7 +8,6 @@ import argparse
 import os
 import sys
 
-import edq.util.dirent
 import lms.procedure.generate_test_data
 
 THIS_DIR: str = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
