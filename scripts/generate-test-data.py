@@ -8,7 +8,7 @@ import argparse
 import os
 import sys
 
-import lms.procedure.generate_test_data
+import lms.testing.testdata
 
 THIS_DIR: str = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 TEST_DATA_DIR: str = os.path.join(THIS_DIR, '..', 'testdata', 'http')
@@ -24,9 +24,10 @@ def run_cli(args):
         'server_start_command': f"docker run --rm -p {args.port}:3000 --name '{args.container_name}' '{args.image_name}'",
         'server_stop_command': f"docker kill '{args.container_name}'",
         'http_exchanges_out_dir': args.out_dir,
+        'fail_fast': args.fail_fast,
     }
 
-    return lms.procedure.generate_test_data.run(args)
+    return lms.testing.testdata.generate(args)
 
 def main():
     return run_cli(_get_parser().parse_args())
@@ -49,6 +50,10 @@ def _get_parser():
     parser.add_argument('--out-dir', dest = 'out_dir',
         action = 'store', type = str, default = TEST_DATA_DIR,
         help = 'Where the output HTTP exchanges will be written (default: %(default)s).')
+
+    parser.add_argument('--fail-fast', dest = 'fail_fast',
+        action = 'store_true', default = False,
+        help = 'If true, stop on the first test failure (default: %(default)s).')
 
     return parser
 
