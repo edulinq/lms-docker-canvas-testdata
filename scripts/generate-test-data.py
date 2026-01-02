@@ -25,6 +25,7 @@ def run_cli(args):
         'server_stop_command': f"docker kill '{args.container_name}'",
         'http_exchanges_out_dir': args.out_dir,
         'fail_fast': args.fail_fast,
+        'pattern': args.pattern,
     }
 
     return lms.testing.testdata.generate(args)
@@ -54,6 +55,10 @@ def _get_parser():
     parser.add_argument('--fail-fast', dest = 'fail_fast',
         action = 'store_true', default = False,
         help = 'If true, stop on the first test failure (default: %(default)s).')
+
+    parser.add_argument('--pattern', dest = 'pattern',
+        action = 'store', type = str, default = None,
+        help = 'If provided, only run tests that match this mattern.')
 
     return parser
 
