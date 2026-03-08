@@ -19,8 +19,6 @@ LMS_TESTDATA_DIR = os.path.join(THIS_DIR, '..', 'lms-testdata')
 DATA_DIR = os.path.join(LMS_TESTDATA_DIR, 'testdata')
 LOAD_SCRIPT = os.path.join(LMS_TESTDATA_DIR, 'load.py')
 
-QUIZ_PATH = os.path.join(LMS_TESTDATA_DIR, 'cse-cracks-course', 'quizzes', 'regex', 'quiz.json')
-
 SERVER = 'http://127.0.0.1:3000'
 API_BASE = 'api/v1'
 
@@ -107,6 +105,7 @@ COURSE_ROLE_ENROLLMENT_MAP = {
 ASSIGNMENT_SUBMISSION_TYPE_NONE = 'none'
 ASSIGNMENT_SUBMISSION_TYPE_MAP = {
     'autograder': ASSIGNMENT_SUBMISSION_TYPE_NONE,
+    'empty': ASSIGNMENT_SUBMISSION_TYPE_NONE,
 }
 
 # Convert a timestamp to a Canvas DateTime string.
@@ -345,9 +344,15 @@ def add_assignments(users, assignments, courses):
     for assignment in assignments.values():
         course_name = assignment['course']
 
+        # Get the submission type and skip assignments without a submission type,
+        # which includes things like quizzes (which are handled separately).
+        submission_type = ASSIGNMENT_SUBMISSION_TYPE_MAP.get(assignment.get('type', None), None)
+        if (submission_type is None):
+            continue
+
         data = {
             'assignment[name]': assignment['name'],
-            'assignment[submission_types][]': ASSIGNMENT_SUBMISSION_TYPE_MAP.get(assignment.get('type', None), ASSIGNMENT_SUBMISSION_TYPE_NONE),
+            'assignment[submission_types][]': submission_type,
             'assignment[turnitin_enabled]': False,
             'assignment[vericite_enabled]': False,
             'assignment[peer_reviews]': False,
@@ -560,15 +565,52 @@ def replace_tokens(users):
         run_sql(sql)
 
 # Upload quizzes to Canvas.
-def add_quizzes(users, courses):
-    token = users['course-owner']['canvas_api_token']
-    course_id = courses['course101']['id']
+def add_quizzes(users, courses, assignments):
+    for quiz_data in assignments.values():
+        if (quiz_data['type'] != 'quiz'):
+            continue
 
-    quiz = quizcomp.quiz.Quiz.from_path(QUIZ_PATH)
-    canvas_instance = quizcomp.uploader.canvas.InstanceInfo(SERVER, course_id, token)
+        token = users['course-owner']['canvas_api_token']
+        course_id = courses[quiz_data['course']]['id']
 
-    uploader = quizcomp.uploader.canvas.CanvasUploader(canvas_instance)
-    uploader.upload_quiz(quiz)
+        quiz_path = os.path.join(LMS_TESTDATA_DIR, quiz_data['relpath'])
+        quiz = quizcomp.quiz.Quiz.from_path(quiz_path)
+        canvas_instance = quizcomp.uploader.canvas.InstanceInfo(SERVER, course_id, token)
+
+        uploader = quizcomp.uploader.canvas.CanvasUploader(canvas_instance)
+        uploader.upload_quiz(quiz)
+
+        # Update ID.
+
+        sql = f"""
+            SELECT id
+            FROM public.quizzes
+            WHERE title = '{quiz_data['name']}'
+            ;
+        """
+        lines = run_sql(sql, get_records = True)
+
+        old_quiz_id = lines[0]
+
+        sql = f"""
+            WITH
+            quiz_groups_fk_update as (
+                UPDATE public.quiz_groups
+                SET quiz_id = {quiz_data['id']}
+                WHERE quiz_id = {old_quiz_id}
+            ),
+            quiz_questions_fk_update as (
+                UPDATE public.quiz_questions
+                SET quiz_id = {quiz_data['id']}
+                WHERE quiz_id = {old_quiz_id}
+            )
+            UPDATE public.quizzes
+            SET id = {quiz_data['id']}
+            WHERE id = {old_quiz_id}
+            ;
+        """
+        run_sql(sql)
+
 
 # wait for the server to respond.
 def wait_for_server():
@@ -616,7 +658,7 @@ def main():
     add_assignments(users, assignments, courses)
     add_submissions(users, courses, assignments, submissions)
     add_groups(users, courses, assignments, groupsets)
-    add_quizzes(users, courses)
+    add_quizzes(users, courses, assignments)
 
     # Replace the created tokens with static values.
     replace_tokens(users)
