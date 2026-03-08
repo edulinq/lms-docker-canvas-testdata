@@ -580,7 +580,7 @@ def add_quizzes(users, courses, assignments):
         uploader = quizcomp.uploader.canvas.CanvasUploader(canvas_instance)
         uploader.upload_quiz(quiz)
 
-        # Update ID.
+        # Update Quiz ID
 
         sql = f"""
             SELECT id
@@ -611,6 +611,31 @@ def add_quizzes(users, courses, assignments):
         """
         run_sql(sql)
 
+        # Update Quiz Question IDs
+
+        sql = f"""
+            WITH
+            quiz_groups_id_update as (
+                UPDATE public.quiz_groups
+                SET id = (id + {quiz_data['id']})
+                WHERE quiz_id = {quiz_data['id']}
+            ),
+            quiz_questions_id_update as (
+                UPDATE public.quiz_questions
+                SET
+                    id = (id + {quiz_data['id']}),
+                    quiz_group_id = (quiz_group_id + {quiz_data['id']}),
+                    assessment_question_id = (assessment_question_id + {quiz_data['id']})
+                WHERE quiz_id = {quiz_data['id']}
+            )
+            UPDATE public.assessment_questions
+            SET id = (id + {quiz_data['id']})
+            WHERE id < 10000
+            ;
+        """
+
+        # Reset the assesment questions sequence.
+        run_sql("SELECT pg_catalog.setval('public.assessment_questions_id_seq', 1, true);")
 
 # wait for the server to respond.
 def wait_for_server():
