@@ -1,2 +1,3 @@
 edq-utils>=0.2.2
+edq-quizcomp>=0.4.3
 requests>=2.31.0

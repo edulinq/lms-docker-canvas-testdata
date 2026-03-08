@@ -11,10 +11,15 @@ import time
 
 import edq.util.pyimport
 import requests
+import quizcomp.quiz
+import quizcomp.uploader.canvas
 
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-DATA_DIR = os.path.join(THIS_DIR, '..', 'lms-testdata', 'testdata')
-LOAD_SCRIPT = os.path.join(THIS_DIR, '..', 'lms-testdata', 'load.py')
+LMS_TESTDATA_DIR = os.path.join(THIS_DIR, '..', 'lms-testdata')
+DATA_DIR = os.path.join(LMS_TESTDATA_DIR, 'testdata')
+LOAD_SCRIPT = os.path.join(LMS_TESTDATA_DIR, 'load.py')
+
+QUIZ_PATH = os.path.join(LMS_TESTDATA_DIR, 'cse-cracks-course', 'quizzes', 'regex', 'quiz.json')
 
 SERVER = 'http://127.0.0.1:3000'
 API_BASE = 'api/v1'
@@ -554,6 +559,17 @@ def replace_tokens(users):
 
         run_sql(sql)
 
+# Upload quizzes to Canvas.
+def add_quizzes(users, courses):
+    token = users['course-owner']['canvas_api_token']
+    course_id = courses['course101']['id']
+
+    quiz = quizcomp.quiz.Quiz.from_path(QUIZ_PATH)
+    canvas_instance = quizcomp.uploader.canvas.InstanceInfo(SERVER, course_id, token)
+
+    uploader = quizcomp.uploader.canvas.CanvasUploader(canvas_instance)
+    uploader.upload_quiz(quiz)
+
 # wait for the server to respond.
 def wait_for_server():
     for _ in range(START_WAIT_ATTEMPTS):
@@ -600,6 +616,7 @@ def main():
     add_assignments(users, assignments, courses)
     add_submissions(users, courses, assignments, submissions)
     add_groups(users, courses, assignments, groupsets)
+    add_quizzes(users, courses)
 
     # Replace the created tokens with static values.
     replace_tokens(users)
