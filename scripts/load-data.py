@@ -353,20 +353,21 @@ def add_assignments(users, assignments, courses):
         data = {
             'assignment[name]': assignment['name'],
             'assignment[submission_types][]': submission_type,
+            'assignment[published]': True,
+            'assignment[points_possible]': assignment['max-points'],
             'assignment[turnitin_enabled]': False,
             'assignment[vericite_enabled]': False,
             'assignment[peer_reviews]': False,
             'assignment[automatic_peer_reviews]': False,
             'assignment[notify_of_update]': False,
-            'assignment[points_possible]': assignment['max-points'],
             'assignment[allowed_attempts]': -1,
             'assignment[grading_type]': 'points',
             'assignment[only_visible_to_overrides]': False,
-            'assignment[published]': True,
-            'assignment[quiz_lti]': False,
-            'assignment[moderated_grading]': False,
             'assignment[omit_from_final_grade]': False,
-            # For some reason, hide_in_gradebook gives a 400.
+            'assignment[moderated_grading]': False,
+
+            # For some reason, some listed options give a 400.
+            # 'assignment[quiz_lti]': False,
             # 'assignment[hide_in_gradebook]': False,
         }
 
@@ -627,12 +628,20 @@ def add_quizzes(users, courses, assignments):
                     quiz_group_id = (quiz_group_id + {quiz_data['id']}),
                     assessment_question_id = (assessment_question_id + {quiz_data['id']})
                 WHERE quiz_id = {quiz_data['id']}
+            ),
+            attachments_contextid_update as (
+                UPDATE public.attachments
+                SET context_id = (context_id + {quiz_data['id']})
+                WHERE
+                    context_type = 'AssessmentQuestion'
+                    AND context_id < 10000
             )
             UPDATE public.assessment_questions
             SET id = (id + {quiz_data['id']})
             WHERE id < 10000
             ;
         """
+        run_sql(sql)
 
         # Reset the assesment questions sequence.
         run_sql("SELECT pg_catalog.setval('public.assessment_questions_id_seq', 1, true);")
