@@ -1,0 +1,23 @@
+{
+    "method": "GET",
+    "url_path": "api/v1/courses/110000000/quizzes/110000200/groups",
+    "url_anchor": null,
+    "parameters": {
+        "per_page": "95"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "false",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"quiz_groups\": [{\"assessment_question_bank_id\": null, \"id\": 110000201, \"name\": \"Ice Breaker\", \"pick_count\": 1, \"position\": 1, \"question_points\": 5.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000202, \"name\": \"Regular Expression in Programming Languages\", \"pick_count\": 1, \"position\": 2, \"question_points\": 5.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000203, \"name\": \"Regular Expression Vocabulary\", \"pick_count\": 1, \"position\": 3, \"question_points\": 20.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000204, \"name\": \"Basic Regular Expressions\", \"pick_count\": 1, \"position\": 4, \"question_points\": 5.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000205, \"name\": \"Passage\", \"pick_count\": 1, \"position\": 5, \"question_points\": 0.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000206, \"name\": \"Passage Search\", \"pick_count\": 1, \"position\": 6, \"question_points\": 10.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000207, \"name\": \"Quantifiers\", \"pick_count\": 1, \"position\": 7, \"question_points\": 5.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000208, \"name\": \"General Quantification\", \"pick_count\": 1, \"position\": 8, \"question_points\": 5.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000209, \"name\": \"Backreference Matching\", \"pick_count\": 1, \"position\": 9, \"question_points\": 10.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000210, \"name\": \"Regex Golf\", \"pick_count\": 1, \"position\": 10, \"question_points\": 15.0, \"quiz_id\": 110000200}, {\"assessment_question_bank_id\": null, \"id\": 110000211, \"name\": \"Write a Function\", \"pick_count\": 1, \"position\": 11, \"question_points\": 20.0, \"quiz_id\": 110000200}]}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": null,
+    "source_path": null,
+    "extra_options": {}
+}

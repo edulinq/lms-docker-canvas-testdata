@@ -15,6 +15,7 @@
     "json_body": false,
     "response_body": "[{\"assignment_id\": 110000100, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"2\", \"entered_score\": 2.0, \"excused\": false, \"extra_attempts\": null, \"grade\": \"2\", \"grade_matches_current_submission\": true, \"graded_at\": \"2023-10-15T21:44:33Z\", \"grader_id\": 100120000, \"grading_period_id\": null, \"id\": 110050101, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2023-10-15T21:44:33Z\", \"redo_request\": false, \"score\": 2.0, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"user_id\": 100050000, \"workflow_state\": \"graded\"}]",
     "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": null,
     "source_path": null,
     "extra_options": {}
 }

@@ -17,6 +17,7 @@
     "json_body": false,
     "response_body": "[{\"avatar_url\": null, \"concluded\": false, \"context_name\": \"Extra Course\", \"context_type\": \"Course\", \"course_id\": 130000000, \"description\": null, \"group_category_id\": 131030300, \"has_submission\": false, \"id\": 131030301, \"is_public\": false, \"join_level\": \"invitation_only\", \"leader\": null, \"max_membership\": null, \"members_count\": 0, \"name\": \"Group 3-1\", \"non_collaborative\": false, \"role\": null, \"storage_quota_mb\": 50}]",
     "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": null,
     "source_path": null,
     "extra_options": {}
 }

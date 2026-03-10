@@ -22,6 +22,7 @@
     "json_body": false,
     "response_body": "{\"completion\": 0.0, \"context_id\": 131010100, \"context_type\": \"GroupCategory\", \"id\": 1, \"message\": null, \"tag\": \"course_group_import\", \"user_id\": null, \"workflow_state\": \"queued\"}",
     "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": null,
     "source_path": null,
     "extra_options": {}
 }
