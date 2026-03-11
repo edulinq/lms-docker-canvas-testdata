@@ -48,6 +48,6 @@ RUN \
     # Stop Server \
     && pgrep -f puma | xargs kill \
     # Remove the sevrer's PID file. \
-    && rm -rf /work/canvas-source/tmp \
+    && rm -rf /work/canvas-source/tmp/pids /work/canvas-source/tmp/sockets \
     # Stop DB \
     && service postgresql stop
