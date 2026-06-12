@@ -3,7 +3,6 @@
     "url_path": "api/v1/courses/110000000/students/submissions",
     "url_anchor": null,
     "parameters": {
-        "assignment_ids[]": "110000100",
         "per_page": "95",
         "student_ids[]": "all"
     },
