@@ -1,0 +1,40 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/quizzes/2/questions",
+    "url_anchor": null,
+    "parameters": {
+        "group_id": "20",
+        "index": "0",
+        "name": "Backreference Matching",
+        "question[answers][0][answer_text]": "\\4",
+        "question[answers][0][answer_weight]": "100",
+        "question[answers][0][blank_id]": "A",
+        "question[answers][1][answer_text]": "\\3",
+        "question[answers][1][answer_weight]": "100",
+        "question[answers][1][blank_id]": "B",
+        "question[answers][2][answer_text]": "\\2",
+        "question[answers][2][answer_weight]": "100",
+        "question[answers][2][blank_id]": "C",
+        "question[points_possible]": "1",
+        "question[position]": "0",
+        "question[question_name]": "Backreference Matching",
+        "question[question_text]": "<div class=\"qg-root-block qg-block\">\n<p>Suppose that we are trying to write a script extract name information from text and put it into a CSV (comma-separated value) file.\nThe order of the columns in our CSV file are: first name, last name, and title.\nAs part of our script, we have a regular expression that looks for people that have their name's written as \"last, first\".</p>\n<pre><code class=\"language-python\">import re\n\ndef create_csv_line(text_line):\n    regex = r'^\\s*((Dr).?)?\\s*([^,]+)\\s*,\\s*(.+)\\s*$'\n    replacement = MY_REPLACEMENT_STRING\n\n    return re.sub(regex, replacement, text_line)\n</code></pre>\n<p>Fill in the blanks in <code>MY_REPLACEMENT_STRING</code> to make the above code work correctly.</p>\n<p><code>MY_REPLACEMENT_STRING = r'</code>[A]<code>,</code>[B]<code>,</code>[C]<code>'</code></p>\n</div>",
+        "question[question_type]": "fill_in_multiple_blanks_question",
+        "question[quiz_group_id]": "20"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"answer_tolerance\": null, \"answers\": [{\"blank_id\": \"A\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 4199, \"text\": \"\\\\4\", \"weight\": 100.0}, {\"blank_id\": \"B\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 321, \"text\": \"\\\\3\", \"weight\": 100.0}, {\"blank_id\": \"C\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 6141, \"text\": \"\\\\2\", \"weight\": 100.0}], \"assessment_question\": {\"assessment_question_bank_id\": 1, \"context_id\": 110000000, \"context_type\": \"Course\", \"deleted_at\": null, \"id\": 10, \"migration_id\": null, \"name\": \"Backreference Matching\", \"position\": 20, \"question_data\": {\"answers\": [{\"blank_id\": \"A\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 4199, \"text\": \"\\\\4\", \"weight\": 100.0}, {\"blank_id\": \"B\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 321, \"text\": \"\\\\3\", \"weight\": 100.0}, {\"blank_id\": \"C\", \"comments\": \"\", \"comments_html\": \"\", \"id\": 6141, \"text\": \"\\\\2\", \"weight\": 100.0}], \"assessment_question_id\": null, \"correct_comments\": \"\", \"correct_comments_html\": \"\", \"id\": null, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"\", \"name\": \"Backreference Matching\", \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"question_name\": \"Backreference Matching\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Suppose that we are trying to write a script extract name information from text and put it into a CSV (comma-separated value) file.\\nThe order of the columns in our CSV file are: first name, last name, and title.\\nAs part of our script, we have a regular expression that looks for people that have their name's written as \\\"last, first\\\".</p>\\n<pre><code class=\\\"language-python\\\">import re\\n\\ndef create_csv_line(text_line):\\n    regex = r'^\\\\s*((Dr).?)?\\\\s*([^,]+)\\\\s*,\\\\s*(.+)\\\\s*$'\\n    replacement = MY_REPLACEMENT_STRING\\n\\n    return re.sub(regex, replacement, text_line)\\n</code></pre>\\n<p>Fill in the blanks in <code>MY_REPLACEMENT_STRING</code> to make the above code work correctly.</p>\\n<p><code>MY_REPLACEMENT_STRING = r'</code>[A]<code>,</code>[B]<code>,</code>[C]<code>'</code></p>\\n</div>\", \"question_type\": \"fill_in_multiple_blanks_question\", \"regrade_option\": false, \"text_after_answers\": \"\"}, \"root_account_id\": 1, \"workflow_state\": \"active\"}, \"assessment_question_id\": 10, \"correct_comments\": \"\", \"correct_comments_html\": \"\", \"formula_decimal_places\": null, \"formulas\": null, \"id\": 22, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"\", \"matches\": null, \"matching_answer_incorrect_matches\": null, \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"position\": null, \"question_name\": \"Backreference Matching\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Suppose that we are trying to write a script extract name information from text and put it into a CSV (comma-separated value) file.\\nThe order of the columns in our CSV file are: first name, last name, and title.\\nAs part of our script, we have a regular expression that looks for people that have their name's written as \\\"last, first\\\".</p>\\n<pre><code class=\\\"language-python\\\">import re\\n\\ndef create_csv_line(text_line):\\n    regex = r'^\\\\s*((Dr).?)?\\\\s*([^,]+)\\\\s*,\\\\s*(.+)\\\\s*$'\\n    replacement = MY_REPLACEMENT_STRING\\n\\n    return re.sub(regex, replacement, text_line)\\n</code></pre>\\n<p>Fill in the blanks in <code>MY_REPLACEMENT_STRING</code> to make the above code work correctly.</p>\\n<p><code>MY_REPLACEMENT_STRING = r'</code>[A]<code>,</code>[B]<code>,</code>[C]<code>'</code></p>\\n</div>\", \"question_type\": \"fill_in_multiple_blanks_question\", \"quiz_group_id\": 20, \"quiz_id\": 2, \"variables\": null}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

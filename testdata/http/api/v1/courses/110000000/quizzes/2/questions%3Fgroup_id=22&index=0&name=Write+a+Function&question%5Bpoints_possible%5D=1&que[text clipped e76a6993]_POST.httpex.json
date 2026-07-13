@@ -1,0 +1,31 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/quizzes/2/questions",
+    "url_anchor": null,
+    "parameters": {
+        "group_id": "22",
+        "index": "0",
+        "name": "Write a Function",
+        "question[points_possible]": "1",
+        "question[position]": "0",
+        "question[question_name]": "Write a Function",
+        "question[question_text]": "<div class=\"qg-root-block qg-block\">\n<p>Implement a function with the following signature and description:</p>\n<pre><code>import re\n\ndef compute(text):\n    \"\"\"\n    Compute the result of the binary expression represented in the |text| variable.\n    The possible operators are: \"+\", \"-\", \"*\", and \"/\".\n    Operands may be any real number.\n    If the operation is division, the RHS (denominator) will not be zero.\n    \"\"\"\n\n    return NotImplemented\n</code></pre>\n<p>Specifics:</p>\n<ul>\n<li>Your function must use regular expressions.</li>\n<li>You may not use <code>eval()</code> or any other Python ast functionality.</li>\n<li>You may only import modules from the Python standard library.</li>\n<li>You should return a float that is the result of the binary operation represented by <code>text</code>.</li>\n<li>The operator will be one of: <span class=\"qg-math\"><code>\\{+, -, *, /\\}</code></span>.</li>\n<li>Operands may be any real number.</li>\n</ul>\n</div>",
+        "question[question_type]": "essay_question",
+        "question[quiz_group_id]": "22"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"answer_tolerance\": null, \"answers\": [], \"assessment_question\": {\"assessment_question_bank_id\": 1, \"context_id\": 110000000, \"context_type\": \"Course\", \"deleted_at\": null, \"id\": 12, \"migration_id\": null, \"name\": \"Write a Function\", \"position\": 22, \"question_data\": {\"answers\": [], \"assessment_question_id\": null, \"comments\": \"\", \"comments_html\": \"\", \"correct_comments\": \"\", \"correct_comments_html\": \"\", \"id\": null, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"\", \"name\": \"Write a Function\", \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"question_name\": \"Write a Function\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Implement a function with the following signature and description:</p>\\n<pre><code>import re\\n\\ndef compute(text):\\n    \\\"\\\"\\\"\\n    Compute the result of the binary expression represented in the |text| variable.\\n    The possible operators are: \\\"+\\\", \\\"-\\\", \\\"*\\\", and \\\"/\\\".\\n    Operands may be any real number.\\n    If the operation is division, the RHS (denominator) will not be zero.\\n    \\\"\\\"\\\"\\n\\n    return NotImplemented\\n</code></pre>\\n<p>Specifics:</p>\\n<ul>\\n<li>Your function must use regular expressions.</li>\\n<li>You may not use <code>eval()</code> or any other Python ast functionality.</li>\\n<li>You may only import modules from the Python standard library.</li>\\n<li>You should return a float that is the result of the binary operation represented by <code>text</code>.</li>\\n<li>The operator will be one of: <span class=\\\"qg-math\\\"><code>\\\\{+, -, *, /\\\\}</code></span>.</li>\\n<li>Operands may be any real number.</li>\\n</ul>\\n</div>\", \"question_type\": \"essay_question\", \"regrade_option\": false, \"text_after_answers\": \"\"}, \"root_account_id\": 1, \"workflow_state\": \"active\"}, \"assessment_question_id\": 12, \"correct_comments\": \"\", \"correct_comments_html\": \"\", \"formula_decimal_places\": null, \"formulas\": null, \"id\": 24, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"\", \"matches\": null, \"matching_answer_incorrect_matches\": null, \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"position\": null, \"question_name\": \"Write a Function\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Implement a function with the following signature and description:</p>\\n<pre><code>import re\\n\\ndef compute(text):\\n    \\\"\\\"\\\"\\n    Compute the result of the binary expression represented in the |text| variable.\\n    The possible operators are: \\\"+\\\", \\\"-\\\", \\\"*\\\", and \\\"/\\\".\\n    Operands may be any real number.\\n    If the operation is division, the RHS (denominator) will not be zero.\\n    \\\"\\\"\\\"\\n\\n    return NotImplemented\\n</code></pre>\\n<p>Specifics:</p>\\n<ul>\\n<li>Your function must use regular expressions.</li>\\n<li>You may not use <code>eval()</code> or any other Python ast functionality.</li>\\n<li>You may only import modules from the Python standard library.</li>\\n<li>You should return a float that is the result of the binary operation represented by <code>text</code>.</li>\\n<li>The operator will be one of: <span class=\\\"qg-math\\\"><code>\\\\{+, -, *, /\\\\}</code></span>.</li>\\n<li>Operands may be any real number.</li>\\n</ul>\\n</div>\", \"question_type\": \"essay_question\", \"quiz_group_id\": 22, \"quiz_id\": 2, \"variables\": null}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

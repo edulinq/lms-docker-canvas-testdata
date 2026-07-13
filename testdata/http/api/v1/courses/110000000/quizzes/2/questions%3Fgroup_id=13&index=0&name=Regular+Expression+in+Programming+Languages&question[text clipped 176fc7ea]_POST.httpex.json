@@ -1,0 +1,37 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/quizzes/2/questions",
+    "url_anchor": null,
+    "parameters": {
+        "group_id": "13",
+        "index": "0",
+        "name": "Regular Expression in Programming Languages",
+        "question[answers][0][answer_text]": "True",
+        "question[answers][0][answer_weight]": "100",
+        "question[answers][1][answer_text]": "False",
+        "question[answers][1][answer_weight]": "0",
+        "question[correct_comments_html]": "<div class=\"qg-root-block qg-block\">\n<p>You are right!</p>\n</div>",
+        "question[incorrect_comments_html]": "<div class=\"qg-root-block qg-block\">\n<p>Regular expressions are so useful that almost every language supports them.</p>\n</div>",
+        "question[points_possible]": "1",
+        "question[position]": "0",
+        "question[question_name]": "Regular Expression in Programming Languages",
+        "question[question_text]": "<div class=\"qg-root-block qg-block\">\n<p>Regular expressions are implemented as either a core feature or in the standard library of almost every major programming language.</p>\n</div>",
+        "question[question_type]": "true_false_question",
+        "question[quiz_group_id]": "13"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"answer_tolerance\": null, \"answers\": [{\"comments\": \"\", \"comments_html\": \"\", \"id\": 4512, \"text\": \"True\", \"weight\": 100}, {\"comments\": \"\", \"comments_html\": \"\", \"id\": 8170, \"text\": \"False\", \"weight\": 0}], \"assessment_question\": {\"assessment_question_bank_id\": 1, \"context_id\": 110000000, \"context_type\": \"Course\", \"deleted_at\": null, \"id\": 3, \"migration_id\": null, \"name\": \"Regular Expression in Programming Languages\", \"position\": 13, \"question_data\": {\"answers\": [{\"comments\": \"\", \"comments_html\": \"\", \"id\": 4512, \"text\": \"True\", \"weight\": 100}, {\"comments\": \"\", \"comments_html\": \"\", \"id\": 8170, \"text\": \"False\", \"weight\": 0}], \"assessment_question_id\": null, \"correct_comments\": \"\", \"correct_comments_html\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>You are right!</p>\\n</div>\", \"id\": null, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Regular expressions are so useful that almost every language supports them.</p>\\n</div>\", \"name\": \"Regular Expression in Programming Languages\", \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"question_name\": \"Regular Expression in Programming Languages\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Regular expressions are implemented as either a core feature or in the standard library of almost every major programming language.</p>\\n</div>\", \"question_type\": \"true_false_question\", \"regrade_option\": false, \"text_after_answers\": \"\"}, \"root_account_id\": 1, \"workflow_state\": \"active\"}, \"assessment_question_id\": 3, \"correct_comments\": \"\", \"correct_comments_html\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>You are right!</p>\\n</div>\", \"formula_decimal_places\": null, \"formulas\": null, \"id\": 14, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Regular expressions are so useful that almost every language supports them.</p>\\n</div>\", \"matches\": null, \"matching_answer_incorrect_matches\": null, \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 1.0, \"position\": null, \"question_name\": \"Regular Expression in Programming Languages\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Regular expressions are implemented as either a core feature or in the standard library of almost every major programming language.</p>\\n</div>\", \"question_type\": \"true_false_question\", \"quiz_group_id\": 13, \"quiz_id\": 2, \"variables\": null}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

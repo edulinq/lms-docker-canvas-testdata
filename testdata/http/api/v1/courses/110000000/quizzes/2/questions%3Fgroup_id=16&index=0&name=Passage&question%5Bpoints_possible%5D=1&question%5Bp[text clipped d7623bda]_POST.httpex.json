@@ -1,0 +1,31 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/quizzes/2/questions",
+    "url_anchor": null,
+    "parameters": {
+        "group_id": "16",
+        "index": "0",
+        "name": "Passage",
+        "question[points_possible]": "1",
+        "question[position]": "0",
+        "question[question_name]": "Passage",
+        "question[question_text]": "<div class=\"qg-root-block qg-block\">\n<p>Below is the opening paragraph (which is actually just one sentence) from\n<em>A Tale Of Two Cities</em> written by Charles Dickens.\nFuture questions may reference this passage as \"the provided passage\".</p>\n<p>\"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness,\nit was the epoch of belief, it was the epoch of incredulity, it was the season of Light,\nit was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us,\nwe had nothing before us, we were all going direct to Heaven, we were all going direct the other way\n\u2014 in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received,\nfor good or for evil, in the superlative degree of comparison only.\"</p>\n</div>",
+        "question[question_type]": "text_only_question",
+        "question[quiz_group_id]": "16"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"answer_tolerance\": null, \"answers\": [], \"assessment_question\": null, \"assessment_question_id\": null, \"correct_comments\": \"\", \"correct_comments_html\": \"\", \"formula_decimal_places\": null, \"formulas\": null, \"id\": 17, \"incorrect_comments\": \"\", \"incorrect_comments_html\": \"\", \"matches\": null, \"matching_answer_incorrect_matches\": null, \"neutral_comments\": \"\", \"neutral_comments_html\": \"\", \"points_possible\": 0, \"position\": null, \"question_name\": \"Passage\", \"question_text\": \"<div class=\\\"qg-root-block qg-block\\\">\\n<p>Below is the opening paragraph (which is actually just one sentence) from\\n<em>A Tale Of Two Cities</em> written by Charles Dickens.\\nFuture questions may reference this passage as \\\"the provided passage\\\".</p>\\n<p>\\\"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness,\\nit was the epoch of belief, it was the epoch of incredulity, it was the season of Light,\\nit was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us,\\nwe had nothing before us, we were all going direct to Heaven, we were all going direct the other way\\n\\u2014 in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received,\\nfor good or for evil, in the superlative degree of comparison only.\\\"</p>\\n</div>\", \"question_type\": \"text_only_question\", \"quiz_group_id\": 16, \"quiz_id\": 2, \"variables\": null}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

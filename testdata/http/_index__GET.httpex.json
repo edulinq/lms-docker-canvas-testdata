@@ -11,7 +11,7 @@
     "json_body": false,
     "response_body": "",
     "response_modifier": "lms.util.net.clean_canvas_response",
-    "finalize": null,
+    "finalize": "lms.util.net.finalize_canvas_exchange",
     "source_path": null,
     "extra_options": {}
 }

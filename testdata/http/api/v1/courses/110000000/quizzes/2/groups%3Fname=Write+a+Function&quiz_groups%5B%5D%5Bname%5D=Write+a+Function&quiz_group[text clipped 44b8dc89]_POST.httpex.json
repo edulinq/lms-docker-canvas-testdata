@@ -1,0 +1,26 @@
+{
+    "method": "POST",
+    "url_path": "api/v1/courses/110000000/quizzes/2/groups",
+    "url_anchor": null,
+    "parameters": {
+        "name": "Write a Function",
+        "quiz_groups[][name]": "Write a Function",
+        "quiz_groups[][pick_count]": "1",
+        "quiz_groups[][question_points]": "20"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 201,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"quiz_groups\": [{\"assessment_question_bank_id\": null, \"id\": 22, \"name\": \"Write a Function\", \"pick_count\": 1, \"position\": 11, \"question_points\": 20.0, \"quiz_id\": 2}]}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

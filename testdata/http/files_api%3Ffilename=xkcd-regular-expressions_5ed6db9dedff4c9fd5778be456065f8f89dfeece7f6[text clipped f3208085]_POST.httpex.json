@@ -1,0 +1,25 @@
+{
+    "method": "POST",
+    "url_path": "files_api",
+    "url_anchor": null,
+    "parameters": {
+        "filename": "xkcd-regular-expressions_5ed6db9dedff4c9fd5778be456065f8f89dfeece7f66be3851c4cab391f5b431.png"
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 302,
+    "response_headers": {
+        "location": "<edq-lms-backend-server>/api/v1/files/3/create_success?uuid=b78627db8049e8261f7a5dfebc7d7b3c0ece6b8b8b312b4ae1a00c9eeb30898d"
+    },
+    "json_body": false,
+    "response_body": "",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}
