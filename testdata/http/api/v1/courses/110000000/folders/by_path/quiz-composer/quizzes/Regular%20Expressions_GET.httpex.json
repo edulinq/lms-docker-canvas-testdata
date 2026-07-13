@@ -1,0 +1,21 @@
+{
+    "method": "GET",
+    "url_path": "api/v1/courses/110000000/folders/by_path/quiz-composer/quizzes/Regular%20Expressions",
+    "url_anchor": null,
+    "parameters": {},
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "false",
+        "authorization": "Bearer xkC8V8BWX4RFx7JMYyZuyDvtDAKRxuGHRxTR268eHzXCPYU46vw89DrBADat4n6U"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "[{\"all_url\": \"http://127.0.0.1:3000/api/v1/folders/1/all\", \"can_upload\": true, \"context_id\": 110000000, \"context_type\": \"Course\", \"files_count\": 0, \"files_url\": \"http://127.0.0.1:3000/api/v1/folders/1/files\", \"folders_count\": 1, \"folders_url\": \"http://127.0.0.1:3000/api/v1/folders/1/folders\", \"for_submissions\": false, \"full_name\": \"course files\", \"hidden\": null, \"hidden_for_user\": false, \"id\": 1, \"lock_at\": null, \"locked\": false, \"locked_for_user\": false, \"name\": \"course files\", \"parent_folder_id\": null, \"position\": null, \"unlock_at\": null}, {\"all_url\": \"http://127.0.0.1:3000/api/v1/folders/2/all\", \"can_upload\": true, \"context_id\": 110000000, \"context_type\": \"Course\", \"files_count\": 0, \"files_url\": \"http://127.0.0.1:3000/api/v1/folders/2/files\", \"folders_count\": 1, \"folders_url\": \"http://127.0.0.1:3000/api/v1/folders/2/folders\", \"for_submissions\": false, \"full_name\": \"course files/quiz-composer\", \"hidden\": true, \"hidden_for_user\": false, \"id\": 2, \"lock_at\": null, \"locked\": false, \"locked_for_user\": false, \"name\": \"quiz-composer\", \"parent_folder_id\": 1, \"position\": 1, \"unlock_at\": null}, {\"all_url\": \"http://127.0.0.1:3000/api/v1/folders/3/all\", \"can_upload\": true, \"context_id\": 110000000, \"context_type\": \"Course\", \"files_count\": 0, \"files_url\": \"http://127.0.0.1:3000/api/v1/folders/3/files\", \"folders_count\": 1, \"folders_url\": \"http://127.0.0.1:3000/api/v1/folders/3/folders\", \"for_submissions\": false, \"full_name\": \"course files/quiz-composer/quizzes\", \"hidden\": true, \"hidden_for_user\": false, \"id\": 3, \"lock_at\": null, \"locked\": false, \"locked_for_user\": false, \"name\": \"quizzes\", \"parent_folder_id\": 2, \"position\": 1, \"unlock_at\": null}, {\"all_url\": \"http://127.0.0.1:3000/api/v1/folders/4/all\", \"can_upload\": true, \"context_id\": 110000000, \"context_type\": \"Course\", \"files_count\": 1, \"files_url\": \"http://127.0.0.1:3000/api/v1/folders/4/files\", \"folders_count\": 0, \"folders_url\": \"http://127.0.0.1:3000/api/v1/folders/4/folders\", \"for_submissions\": false, \"full_name\": \"course files/quiz-composer/quizzes/Regular Expressions\", \"hidden\": true, \"hidden_for_user\": false, \"id\": 4, \"lock_at\": null, \"locked\": false, \"locked_for_user\": false, \"name\": \"Regular Expressions\", \"parent_folder_id\": 3, \"position\": 1, \"unlock_at\": null}]",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}

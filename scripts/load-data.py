@@ -11,8 +11,6 @@ import time
 
 import edq.util.pyimport
 import requests
-import quizcomp.quiz
-import quizcomp.uploader.canvas
 
 THIS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 LMS_TESTDATA_DIR = os.path.join(THIS_DIR, '..', 'lms-testdata')
@@ -573,13 +571,16 @@ def add_quizzes(users, courses, assignments):
 
         token = users['course-owner']['canvas_api_token']
         course_id = courses[quiz_data['course']]['id']
-
         quiz_path = os.path.join(LMS_TESTDATA_DIR, quiz_data['relpath'])
-        quiz = quizcomp.quiz.Quiz.from_path(quiz_path)
-        canvas_instance = quizcomp.uploader.canvas.InstanceInfo(SERVER, course_id, token)
 
-        uploader = quizcomp.uploader.canvas.CanvasUploader(canvas_instance)
-        uploader.upload_quiz(quiz)
+        args = [
+            '/usr/bin/python3', '-m', 'lms.cli.courses.quizzes.upload',
+            '--server', SERVER,
+            '--auth-token', token,
+            '--course', str(course_id),
+            quiz_path,
+        ]
+        result = subprocess.run(args, check = True)
 
         # Update Quiz ID
 
