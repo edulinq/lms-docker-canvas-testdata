@@ -9,7 +9,9 @@ COPY ./requirements.txt /work/
 RUN pip3 install -r /work/requirements.txt
 
 # Need KaTeX for quiz equations.
-RUN cd /work/canvas-source && npm install katex --legacy-peer-deps
+RUN \
+    cd /work/canvas-source \
+    && npm install katex@0.16.47 --legacy-peer-deps
 
 WORKDIR /work/canvas-source
 

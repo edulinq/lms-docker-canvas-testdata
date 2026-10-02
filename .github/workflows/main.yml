@@ -27,19 +27,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         env:
           PIP_DISABLE_PIP_VERSION_CHECK: 1
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Cache Python Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ runner.os }}-os:${{ matrix.runner }}-python:${{ matrix.python-version }}-${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
@@ -49,10 +49,10 @@ jobs:
         run: pip3 install -r requirements.txt -r requirements-dev.txt
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        uses: docker/login-action@v4.6.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -69,13 +69,13 @@ jobs:
 
       - name: Extract Metadata for Docker
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@v6.2.0
         with:
           images: ${{ env.FULL_IMAGE_NAME }}
 
       - name: Build
         id: build
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        uses: docker/build-push-action@v7.4.0
         with:
           context: .
           platforms: ${{ matrix.platform }}
@@ -102,15 +102,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        uses: docker/login-action@v4.6.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -127,13 +127,13 @@ jobs:
 
       - name: Extract Metadata for Docker
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@v6.2.0
         with:
           images: ${{ env.FULL_IMAGE_NAME }}
 
       - name: Build and Push to Digest
         id: build
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        uses: docker/build-push-action@v7.4.0
         with:
           context: .
           platforms: ${{ matrix.platform }}
@@ -152,7 +152,7 @@ jobs:
 
       - name: Upload Digest
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ env.PLATFORM_PAIR }}
           path: ${{ runner.temp }}/digests/*
@@ -173,17 +173,17 @@ jobs:
           echo "FULL_IMAGE_NAME=${registry}/${base_image_name}" >> $GITHUB_ENV
 
       - name: Download Digests
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: ${{ runner.temp }}/digests
           pattern: digests-*
           merge-multiple: true
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4.4.1
 
       - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        uses: docker/login-action@v4.6.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -191,7 +191,7 @@ jobs:
 
       - name: Craete Docker Metadata
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@v6.2.0
         with:
           images: ${{ env.FULL_IMAGE_NAME }}
           tags: |
