@@ -1,0 +1,23 @@
+{
+    "method": "PUT",
+    "url_path": "api/v1/courses/110000000/assignments/110000100/submissions/100050000",
+    "url_anchor": null,
+    "parameters": {
+        "comment[text_comment]": "Feedback without a grade change."
+    },
+    "files": [],
+    "headers": {
+        "edq-lms-backend": "canvas",
+        "edq-lms-write": "true",
+        "authorization": "Bearer T7J3DQMJzamkcPVWtkRh6zczx7CHEBy3JGJkvEeavcQyVKDGL9MAkveyJyDuAUEL"
+    },
+    "allow_redirects": true,
+    "response_code": 200,
+    "response_headers": {},
+    "json_body": false,
+    "response_body": "{\"all_submissions\": [{\"assignment_id\": 110000100, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"2\", \"entered_score\": 2.0, \"excused\": false, \"extra_attempts\": null, \"grade\": \"2\", \"grade_matches_current_submission\": true, \"graded_at\": \"2023-10-15T21:44:33Z\", \"grader_id\": 100120000, \"grading_period_id\": null, \"id\": 110050101, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2023-10-15T21:44:33Z\", \"redo_request\": false, \"score\": 2.0, \"seconds_late\": 0, \"sticker\": null, \"submission_type\": null, \"submitted_at\": null, \"user_id\": 100050000, \"workflow_state\": \"graded\"}], \"assignment_id\": 110000100, \"attempt\": null, \"body\": null, \"cached_due_date\": null, \"custom_grade_status_id\": null, \"entered_grade\": \"2\", \"entered_score\": 2.0, \"excused\": false, \"extra_attempts\": null, \"grade\": \"2\", \"grade_matches_current_submission\": true, \"graded_at\": \"2023-10-15T21:44:33Z\", \"grader_id\": 100120000, \"grading_period_id\": null, \"id\": 110050101, \"late\": false, \"late_policy_status\": null, \"missing\": false, \"points_deducted\": null, \"posted_at\": \"2023-10-15T21:44:33Z\", \"redo_request\": false, \"score\": 2.0, \"seconds_late\": 0, \"sticker\": null, \"submission_comments\": [{\"attempt\": null, \"author\": {\"anonymous_id\": \"1nkf2o\", \"avatar_image_url\": \"http://canvas.instructure.com/images/messages/avatar-50.png\", \"display_name\": \"course-student\", \"html_url\": \"http://127.0.0.1:33049/courses/110000000/users/100050000\", \"id\": 100050000, \"pronouns\": null}, \"author_id\": 100050000, \"author_name\": \"course-student\", \"comment\": \"Feedback without a grade change.\", \"edited_at\": null, \"id\": 1}], \"submission_type\": null, \"submitted_at\": null, \"user_id\": 100050000, \"workflow_state\": \"graded\"}",
+    "response_modifier": "lms.util.net.clean_canvas_response",
+    "finalize": "lms.util.net.finalize_canvas_exchange",
+    "source_path": null,
+    "extra_options": {}
+}
